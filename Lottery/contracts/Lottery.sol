@@ -6,4 +6,8 @@ contract Lottery {
     function Lottery() public {
         manager = msg.sender;
     }
+
+    function enter() public payable {
+        players.push(msg.sender);
+    }
 }
