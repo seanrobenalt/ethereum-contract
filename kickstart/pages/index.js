@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
-import factory from '../ethereum/factory';
+import React, { Component } from "react";
+import { Card, Button } from "semantic-ui-react";
+import factory from "../ethereum/factory";
 
 class CampaignIndex extends Component {
   static async getInitialProps() {
@@ -8,8 +9,28 @@ class CampaignIndex extends Component {
     return { campaigns };
   }
 
+  renderCampaigns() {
+    const items = this.props.campaigns.map(address => {
+      return {
+        header: address,
+        description: <a>View Campaigns</a>,
+        fluid: true
+      };
+    });
+
+    return <Card.Group items={items} />;
+  }
+
   render() {
-    return <div>{this.props.campaigns[0]}</div>;
+    return <div>
+              <h3>Open Campaigns</h3>
+              {this.renderCampaigns()}
+              <Button
+                content="Create Campaign"
+                icon="add circle"
+                primary
+              />
+            </div>;
   }
 }
 
